@@ -1,0 +1,7 @@
+{
+  "name": "Aerosentinel Cockpit",
+  "description": "Advanced AI Drone Control Interface for DJI Mini 3 with object tracking, autonomous navigation, and cinematic controls.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
