@@ -36,13 +36,46 @@
 
 ## 🎯 Overview
 
-**Aerosentinel** is a web-based Ground Control Station (GCS) designed specifically for the **DJI Mini 3** series drones. It enables PC-based drone control through a browser interface, featuring live telemetry visualization, AI-powered object tracking using YOLOv8, and autonomous mission execution.
+**Aerosentinel** is a web-based Ground Control Station (GCS) designed specifically for the **DJI Mini 3** series drones. It enables PC-based drone control through a browser interface, featuring:
+- Live telemetry visualization
+- AI-powered object tracking using YOLOv8
+- Autonomous mission execution
+- Real-time video streaming via Android Bridge
+- Comprehensive field testing capabilities
+
+### Current Implementation Status
+✅ **Frontend**: Complete React-based interface with telemetry dashboard
+✅ **Backend**: FastAPI server with WebSocket endpoints and YOLOv8 integration
+✅ **Android Bridge**: Kotlin app connecting DJI MSDK v5 to backend via WebSocket
+✅ **Documentation**: Complete handover guide and field testing plan
 
 ### Why Aerosentinel?
 
 - **No Official PC SDK**: DJI Mini 3 only supports Mobile SDK (MSDK v5), not Windows SDK
 - **Tethered Bridge Solution**: Uses an Android phone as a bridge between drone and PC
 - **Full-Featured GCS**: Professional-grade interface with simulation mode for testing
+
+---
+
+## ✨ Key Features
+
+### Android Bridge
+- **DJI MSDK v5 Integration**: Full telemetry capture (attitude, GPS, battery, velocity)
+- **Video Streaming**: H.264 decoding to JPEG via MediaCodec
+- **WebSocket Connection**: Real-time data transmission to backend
+- **Configurable IP**: Easy backend server address configuration
+
+### Backend Services
+- **Dual WebSocket Endpoints**: `/ws` (frontend) and `/ws/drone` (Android Bridge)
+- **YOLOv8 Inference**: Real-time object detection on video frames
+- **MJPEG Stream**: `/video_feed` endpoint for browser viewing
+- **Mock Client**: `test_drone_client.py` for hardware-free testing
+
+### Frontend Dashboard
+- **Live Telemetry Display**: All key drone metrics
+- **Object Tracking UI**: Visualizes detected objects
+- **Command Interface**: Flight mode, gimbal, and mission controls
+- **Connection Management**: Automatic WebSocket reconnection
 
 ---
 
