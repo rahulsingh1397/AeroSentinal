@@ -3,16 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp">
+    android:padding="24dp"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aerosentinel Bridge"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/ipInput"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="PC IP Address (e.g. 192.168.1.100)"
+            android:text="192.168.1."
+            android:inputType="number|textUri"/>
+
+        <Button
+            android:id="@+id/connectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/statusText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aerosentinel Bridge\n\nConnecting to backend..."
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:gravity="center" />
+        android:text="Status: Waiting..."
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="32dp"/>
 
 </LinearLayout>

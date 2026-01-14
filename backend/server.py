@@ -50,6 +50,10 @@ async def drone_endpoint(websocket: WebSocket):
         while True:
             message = await websocket.receive()
             
+            if message["type"] == "websocket.disconnect":
+                print("Drone disconnected (message received)")
+                break
+            
             if "text" in message:
                 # Broadcast Telemetry
                 for client in frontend_clients:
