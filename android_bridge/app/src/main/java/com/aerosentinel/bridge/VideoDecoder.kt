@@ -4,9 +4,9 @@ import android.graphics.ImageFormat
 import android.graphics.Rect
 import android.graphics.YuvImage
 import android.media.MediaCodec
+import android.media.MediaCodecInfo
 import android.media.MediaFormat
 import android.util.Log
-import android.view.Surface
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 
@@ -24,9 +24,8 @@ class VideoDecoder(private val onFrameDecoded: (ByteArray) -> Unit) {
 
         try {
             val format = MediaFormat.createVideoFormat(MediaFormat.MIMETYPE_VIDEO_AVC, width, height)
-            // Ensure we get a color format that YuvImage understands (NV21 is ideal, but codec gives what it gives)
-            // Typically COLOR_FormatYUV420Flexible is the standard for new Android APIs.
-            format.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodec.CodecCapabilities.COLOR_FormatYUV420Flexible)
+            // Use MediaCodecInfo.CodecCapabilities instead of MediaCodec.CodecCapabilities if it helps
+            format.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Flexible)
             
             codec = MediaCodec.createDecoderByType(MediaFormat.MIMETYPE_VIDEO_AVC)
             codec?.configure(format, null, null, 0)
@@ -40,15 +39,12 @@ class VideoDecoder(private val onFrameDecoded: (ByteArray) -> Unit) {
 
     fun decode(data: ByteArray, length: Int) {
         if (!isConfigured) {
-            // Lazy init if not already done, assuming standard 720p or trying to parse SPS/PPS
-            // For now, let's assume 1280x720 from the drone if not set.
             initCodec(1280, 720)
         }
 
         val codec = this.codec ?: return
 
         try {
-            // 1. Input
             val inputIndex = codec.dequeueInputBuffer(10000)
             if (inputIndex >= 0) {
                 val inputBuffer = codec.getInputBuffer(inputIndex)
@@ -57,16 +53,13 @@ class VideoDecoder(private val onFrameDecoded: (ByteArray) -> Unit) {
                 codec.queueInputBuffer(inputIndex, 0, length, System.nanoTime() / 1000, 0)
             }
 
-            // 2. Output
             val bufferInfo = MediaCodec.BufferInfo()
             var outputIndex = codec.dequeueOutputBuffer(bufferInfo, 0)
             
             while (outputIndex >= 0) {
                 val outputBuffer = codec.getOutputBuffer(outputIndex)
                 if (outputBuffer != null && bufferInfo.size > 0) {
-                    // Convert YUV420 to JPEG
-                    // This is CPU intensive. In production, consider doing this on GPU or sending raw H264 if backend supports it.
-                    val jpegBytes = nv21ToJpeg(outputBuffer, width, height, bufferInfo)
+                    val jpegBytes = nv21ToJpeg(outputBuffer, width, height)
                     if (jpegBytes != null) {
                         onFrameDecoded(jpegBytes)
                     }
@@ -79,22 +72,16 @@ class VideoDecoder(private val onFrameDecoded: (ByteArray) -> Unit) {
         }
     }
 
-    private fun nv21ToJpeg(buffer: ByteBuffer, width: Int, height: Int, info: MediaCodec.BufferInfo): ByteArray? {
-        // NOTE: This assumes the decoder output is reasonably close to NV21 or YUV420SemiPlanar.
-        // Handling strict COLOR_FormatYUV420Flexible structure is complex. 
-        // We will do a simplified read here assuming a flat buffer.
-        
+    private fun nv21ToJpeg(buffer: ByteBuffer, width: Int, height: Int): ByteArray? {
         try {
-            val bytes = ByteArray(info.size)
+            val bytes = ByteArray(buffer.remaining())
             buffer.get(bytes)
             
-            // Adjust stride if necessary (omitted for brevity, assume packed)
             val yuvImage = YuvImage(bytes, ImageFormat.NV21, width, height, null)
             val out = ByteArrayOutputStream()
-            yuvImage.compressToJpeg(Rect(0, 0, width, height), 70, out) // 70% Quality
+            yuvImage.compressToJpeg(Rect(0, 0, width, height), 70, out)
             return out.toByteArray()
         } catch (e: Exception) {
-            // Log.e(TAG, "JPEG Conversion failed", e)
             return null
         }
     }

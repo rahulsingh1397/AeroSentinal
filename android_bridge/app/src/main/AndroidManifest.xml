@@ -19,11 +19,16 @@
     <application
         android:name=".BridgeApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@android:drawable/ic_menu_info_details"
         android:label="Aerosentinel Bridge"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@android:drawable/ic_menu_info_details"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+
+        <meta-data
+            android:name="com.dji.sdk.API_KEY"
+            android:value="11711c7adcdb9c623750c5b7" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

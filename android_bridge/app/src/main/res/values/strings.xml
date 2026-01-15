@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Aerosentinel Bridge</string>
+    <string name="status_msg">Status: %1$s</string>
+    <string name="connecting_to">Connecting to %1$s...</string>
+    <string name="sdk_init_progress">SDK Init: %1$d steps remaining</string>
+    <string name="sdk_register_failed">SDK Register Failed: %1$s</string>
+    <string name="db_download_progress">DB Download: %1$d/%2$d</string>
 </resources>
