@@ -35,9 +35,10 @@ class MainActivity : AppCompatActivity() {
         connectBtn = findViewById(R.id.connectBtn)
 
         connectBtn.setOnClickListener {
-            val ip = ipInput.text.toString()
-            if (ip.isNotBlank()) {
-                connectBackend("ws://$ip:8000/ws/drone")
+            val raw = ipInput.text.toString().trim()
+            if (raw.isNotBlank()) {
+                val url = sanitizeBackendUrl(raw)
+                connectBackend(url)
             }
         }
 
@@ -60,6 +61,34 @@ class MainActivity : AppCompatActivity() {
                 updateStatus("Failed: ${t.message}")
             }
         })
+    }
+
+    private fun sanitizeBackendUrl(raw: String): String {
+        var input = raw.replace("\\s".toRegex(), "")
+
+        fun ensurePath(u: String): String {
+            return if (u.endsWith("/ws/drone")) u else u.trimEnd('/') + "/ws/drone"
+        }
+
+        if (!input.contains("://")) {
+            // No scheme provided; normalize IP/host with optional port.
+            // If user typed an extra port (e.g., 192.168.1.10:8000:8000), keep only host:port.
+            if (input.count { it == ':' } > 1) {
+                val parts = input.split(":")
+                if (parts.size >= 2) input = parts[0] + ":" + parts[1]
+            }
+            // If no port, default to 8000.
+            if (!input.contains(":")) {
+                input = "$input:8000"
+            }
+            return "ws://" + ensurePath(input)
+        }
+
+        // Scheme provided; coerce http->ws and https->wss.
+        input = input
+            .replaceFirst("^http://".toRegex(), "ws://")
+            .replaceFirst("^https://".toRegex(), "wss://")
+        return ensurePath(input)
     }
 
     private fun initDJISDK() {

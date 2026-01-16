@@ -17,7 +17,9 @@
     <uses-feature android:name="android.hardware.usb.accessory" android:required="true" />
 
     <application
+        android:extractNativeLibs="true"
         android:name=".BridgeApplication"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:icon="@android:drawable/ic_menu_info_details"
         android:label="Aerosentinel Bridge"
