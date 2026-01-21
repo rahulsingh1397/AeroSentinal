@@ -12,9 +12,14 @@
 #   public *;
 #}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# DJI SDK V5 Rules
+-keep class dji.** { *; }
+-keep class com.dji.** { *; }
+-keep class com.secneo.** { *; }
+-ignorewarnings
+
+# Original rules
+-keepattributes SourceFile,LineNumberTable
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.

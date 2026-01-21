@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,6 +17,31 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="32dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <View
+            android:id="@+id/connectionIndicator"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="#D32F2F"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/connectionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disconnected"
+            android:textSize="14sp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,6 +72,101 @@
         android:text="Status: Waiting..."
         android:textSize="16sp"
         android:gravity="center"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="24dp"/>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#F5F5F5"
+        android:elevation="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telemetry"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/batteryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Battery: --%"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/altitudeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Altitude: -- m"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/speedHText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Speed H: -- m/s"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/speedVText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Speed V: -- m/s"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/pitchText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pitch: --°"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/rollText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Roll: --°"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/yawText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yaw: --°"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/distanceHomeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Distance Home: -- m"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/obstacleDistanceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Obstacle Distance: -- m"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/gimbalPitchText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gimbal Pitch: --°"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/coordinatesText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Coords: --, --"/>
+    </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

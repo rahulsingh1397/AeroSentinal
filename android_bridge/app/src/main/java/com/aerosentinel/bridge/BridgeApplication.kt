@@ -1,11 +1,15 @@
 package com.aerosentinel.bridge
 
-import android.app.Application
 import android.content.Context
+import androidx.multidex.MultiDexApplication
 
-class BridgeApplication : Application() {
+class BridgeApplication : MultiDexApplication() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+    }
+
+    override fun onCreate() {
+        super.onCreate()
         com.secneo.sdk.Helper.install(this)
     }
 }
