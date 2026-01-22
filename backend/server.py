@@ -56,9 +56,14 @@ async def drone_endpoint(websocket: WebSocket):
             
             if "text" in message:
                 # Broadcast Telemetry
+                print(f"Received telemetry: {message['text']}")
                 for client in frontend_clients:
-                    try: await client.send_text(message["text"])
-                    except: pass
+                    try: 
+                        await client.send_text(message["text"])
+                        print(f"Forwarded telemetry to frontend client")
+                    except: 
+                        print("Failed to send telemetry to frontend client")
+                        pass
             
             elif "bytes" in message:
                 raw_bytes = message["bytes"]

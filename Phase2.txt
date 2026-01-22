@@ -6,9 +6,7 @@ Goal: Move from “seeing objects” to “understanding motion”
 Step 2.1 — Upgrade Vision Stack
 
 Replace YOLOv8-n with YOLOv8-m
-
 Enable CUDA + TensorRT inference
-
 Target: ≥60 FPS at 1080p on RTX 5060 Ti
 
 Outcome:
@@ -17,9 +15,7 @@ More stable detections, fewer false positives, better distance consistency
 Step 2.2 — Add Multi-Object Tracking (MOT)
 
 Integrate DeepSORT
-
 Assign persistent object IDs
-
 Track velocity vectors per object
 
 Outcome:
@@ -28,26 +24,19 @@ Objects are no longer “frame-by-frame” — they have identity and memory
 Step 2.3 — Smart Track v2
 
 Allow operator to:
-
 Select object class (person / vehicle)
-
 Lock onto a specific ID
-
 Implement loss-of-target recovery logic
 
 Outcome:
 Reliable cinematic tracking without manual re-selection
 
 Phase 3: Spatial Awareness (Seeing → Understanding Space)
-
 Goal: Add depth & environmental context
 
 Step 3.1 — Depth Estimation
-
 Integrate MiDaS (small model)
-
 Generate relative depth maps from RGB feed
-
 Fuse depth with bounding boxes
 
 Outcome:
@@ -56,11 +45,8 @@ Distance-aware tracking (near vs far objects)
 Step 3.2 — Proximity Awareness
 
 Combine:
-
 Depth estimation
-
 DJI obstacle telemetry
-
 Generate collision risk score
 
 Outcome:
@@ -69,18 +55,14 @@ Visual + audio warnings before unsafe maneuvers
 Step 3.3 — Camera Framing Intelligence
 
 Auto-adjust:
-
 Gimbal pitch
-
 Zoom framing
-
 Maintain rule-of-thirds composition
 
 Outcome:
 Cinematography feels intentional, not reactive
 
 Phase 4: Autonomy Layer (Assisted → Semi-Autonomous)
-
 Goal: Let AI assist — not replace — the pilot
 
 Step 4.1 — Mission Intelligence Engine
@@ -88,11 +70,8 @@ Step 4.1 — Mission Intelligence Engine
 AI suggests:
 
 Orbit radius
-
 Tracking speed
-
 Altitude band
-
 Operator retains final control
 
 Outcome:
@@ -101,17 +80,12 @@ AI becomes a copilot, not an autopilot
 Step 4.2 — AI Shot Selection
 
 Automatically choose:
-
 Orbit
-
 Dronie
-
 Follow
 
 Based on:
-
 Subject motion
-
 Environment openness
 
 Outcome:
@@ -120,80 +94,60 @@ One-click cinematic shots powered by AI context
 Step 4.3 — Safety Envelope Enforcement
 
 Hard limits:
-
 Max pitch
-
 Max yaw rate
-
 Min altitude
-
 Override AI if constraints violated
 
 Outcome:
 Regulatory-safe autonomy (no reckless AI behavior)
 
 Phase 5: Edge Intelligence (Latency → Resilience)
-
 Goal: Reduce dependence on PC inference
 
 Step 5.1 — On-Device AI (Android)
-
 Deploy YOLOv8-nano (INT8) on phone
-
 Run low-FPS fallback detection
 
 Outcome:
 System remains functional if PC link drops
 
 Step 5.2 — Hybrid Inference Mode
-
 PC = high-accuracy vision
-
 Phone = emergency perception
-
 Automatic failover logic
 
 Outcome:
 Mission continuity under degraded conditions
 
 Phase 6: AI Operator Interface (Controls → Commands)
-
 Goal: Natural human–AI interaction
 
 Step 6.1 — Voice Command Engine
 
 Local LLM (7B, 4-bit)
-
 Commands like:
-
 “Track the cyclist”
-
 “Start orbit shot”
 
 Outcome:
 Hands-free AI control without cloud dependency
 
 Step 6.2 — Natural Language Mission Builder
-
 Convert text → waypoint logic
-
 Validate commands before execution
 
 Outcome:
 Complex missions created in seconds, safely
 
 Phase 7: Learning System (Static → Adaptive)
-
 Goal: Build a data flywheel
 
 Step 7.1 — Flight Data Logging
 
 Store:
-
 Frames
-
 Detections
-
 Operator overrides
 
 Outcome:
@@ -214,4 +168,6 @@ System improves over time — without risky self-learning
 
 🎯 Final Positioning Statement
 
-Aerosentinel evolves from a real-time AI perception system into a semi-autonomous, safety-aware, cinematic flight copilot — optimized for consumer-grade GPUs like the RTX 5060 Ti.
+Aerosentinel evolves from a real-time AI perception system into a semi-autonomous,
+safety-aware, cinematic flight copilot — optimized for consumer-grade GPUs like the
+RTX 5060 Ti.

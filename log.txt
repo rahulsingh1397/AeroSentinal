@@ -1,0 +1,157 @@
+---------------------------- PROCESS STARTED (25823) for package com.aerosentinel.bridge ----------------------------
+--------- beginning of system
+--------- beginning of main
+2026-01-16 17:04:47.350 25823-25823 sentinel.bridg          com.aerosentinel.bridge              I  Late-enabling -Xcheck:jni
+2026-01-16 17:04:47.428 25823-25823 sentinel.bridg          com.aerosentinel.bridge              I  Unquickening 22 vdex files!
+2026-01-16 17:04:47.502 25823-25823 ActivityThread          com.aerosentinel.bridge              D  setConscryptValidator
+2026-01-16 17:04:47.502 25823-25823 ActivityThread          com.aerosentinel.bridge              D  setConscryptValidator - put
+2026-01-16 17:04:47.632 25823-25823 ActivityThread          com.aerosentinel.bridge              D  handleBindApplication()++ app=com.aerosentinel.bridge
+2026-01-16 17:04:48.250 25823-25823 LoadedApk               com.aerosentinel.bridge              D  LoadedApk::makeApplication() appContext=android.app.ContextImpl@9f111c3 appContext.mOpPackageName=com.aerosentinel.bridge appContext.mBasePackageName=com.aerosentinel.bridge appContext.mPackageInfo=android.app.LoadedApk@ee02a40
+2026-01-16 17:04:48.250 25823-25823 NetworkSecurityConfig   com.aerosentinel.bridge              D  Using Network Security Config from resource network_security_config debugBuild: true
+2026-01-16 17:04:48.288 25823-25823 NetworkSecurityConfig   com.aerosentinel.bridge              D  Using Network Security Config from resource network_security_config debugBuild: true
+2026-01-16 17:04:48.293 25823-25823 MultiDex                com.aerosentinel.bridge              I  VM with version 2.1.0 has multidex support
+2026-01-16 17:04:48.293 25823-25823 MultiDex                com.aerosentinel.bridge              I  Installing application
+2026-01-16 17:04:48.293 25823-25823 MultiDex                com.aerosentinel.bridge              I  VM has multidex support, MultiDex support library is disabled.
+2026-01-16 17:04:48.632 25823-25823 ActivityThread          com.aerosentinel.bridge              D  handleBindApplication() -- skipGraphicsSupport=false
+2026-01-16 17:04:48.828 25823-25823 sentinel.bridg          com.aerosentinel.bridge              E  No implementation found for void com.secneo.sdk.Helper.i() (tried Java_com_secneo_sdk_Helper_i and Java_com_secneo_sdk_Helper_i__)
+---------------------------- PROCESS STARTED (27736) for package com.aerosentinel.bridge ----------------------------
+2026-01-16 17:04:51.210 25823-25823 AppCompatDelegate       com.aerosentinel.bridge              D  Checking for metadata for AppLocalesMetadataHolderService : Service not found
+2026-01-16 17:04:51.794 25823-25823 DecorView               com.aerosentinel.bridge              I  [INFO] isPopOver=false, config=true
+2026-01-16 17:04:51.795 25823-25823 DecorView               com.aerosentinel.bridge              I  updateCaptionType >> DecorView@ba446f2[], isFloating=false, isApplication=true, hasWindowDecorCaption=false, hasWindowControllerCallback=true
+2026-01-16 17:04:51.795 25823-25823 DecorView               com.aerosentinel.bridge              D  setCaptionType = 0, this = DecorView@ba446f2[]
+2026-01-16 17:04:51.965 25823-25823 sentinel.bridg          com.aerosentinel.bridge              W  Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (greylist, reflection, allowed)
+2026-01-16 17:04:51.967 25823-25823 sentinel.bridg          com.aerosentinel.bridge              W  Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (greylist, reflection, allowed)
+2026-01-16 17:04:52.231 25823-27834 init                    com.aerosentinel.bridge              I  (co_a:3) false 
+2026-01-16 17:04:52.231 25823-27834 DJI                     com.aerosentinel.bridge              I  SDK init progress=0
+2026-01-16 17:04:52.236 25823-25823 DJIV5/co_a@5c16bd6      com.aerosentinel.bridge              E  (track:4) AnalyticsEngine is not init 
+2026-01-16 17:04:52.575 25823-25823 InputTransport          com.aerosentinel.bridge              D  Input channel constructed: 'e389f69', fd=74
+2026-01-16 17:04:52.591 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  setView = com.android.internal.policy.DecorView@ba446f2 TM=true
+2026-01-16 17:04:52.694 25823-27834 CertificatePolicyCache  com.aerosentinel.bridge              D  Creating new instance of CertificatePolicyCache myUid: 10623 callingUid: 10623
+2026-01-16 17:04:52.694 25823-27834 CertificatePolicyCache  com.aerosentinel.bridge              D  readVariables type: null userId: 0
+2026-01-16 17:04:52.703 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  assignNativeObject: nativeObject = 0 Surface(name=null)/@0x50e6d7d / android.view.SurfaceControl.readFromParcel:1121 android.view.IWindowSession$Stub$Proxy.relayout:1824 android.view.ViewRootImpl.relayoutWindow:9005 android.view.ViewRootImpl.performTraversals:3360 android.view.ViewRootImpl.doTraversal:2618 android.view.ViewRootImpl$TraversalRunnable.run:9971 android.view.Choreographer$CallbackRecord.run:1010 android.view.Choreographer.doCallbacks:809 android.view.Choreographer.doFrame:744 android.view.Choreographer$FrameDisplayEventReceiver.run:995 
+2026-01-16 17:04:52.706 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  Relayout returned: old=(0,0,2340,1080) new=(83,0,2340,1080) req=(2340,1080)0 dur=23 res=0x7 s={true 502140837888} ch=true fn=-1
+2026-01-16 17:04:52.736 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  [DP] dp(1) 1 android.view.ViewRootImpl.reportNextDraw:10957 android.view.ViewRootImpl.performTraversals:3845 android.view.ViewRootImpl.doTraversal:2618 
+2026-01-16 17:04:52.738 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  [DP] pd() Asnyc report
+2026-01-16 17:04:52.777 25823-27743 Gralloc4                com.aerosentinel.bridge              I  mapper 4.x is not supported
+2026-01-16 17:04:52.778 25823-27743 Gralloc3                com.aerosentinel.bridge              W  mapper 3.x is not supported
+2026-01-16 17:04:52.796 25823-27743 gralloc                 com.aerosentinel.bridge              I  Arm Module v1.0
+2026-01-16 17:04:53.144 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  [DP] pdf(0) 1 android.view.ViewRootImpl.lambda$performDraw$1$ViewRootImpl:4668 android.view.-$$Lambda$ViewRootImpl$DJd0VUYJgsebcnSohO6h8zc_ONI.run:6 android.os.Handler.handleCallback:938 
+2026-01-16 17:04:53.144 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  [DP] rdf()
+2026-01-16 17:04:53.146 25823-25823 Choreographer           com.aerosentinel.bridge              I  Skipped 31 frames!  The application may be doing too much work on its main thread.
+2026-01-16 17:04:53.199 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  prepareNavigationBarInfo() DecorView@ba446f2[MainActivity]
+2026-01-16 17:04:53.199 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  getNavigationBarColor() -16711423
+2026-01-16 17:04:53.208 25823-25823 EmergencyMode           com.aerosentinel.bridge              D  [EmergencyManager] android createPackageContext successful: com.aerosentinel.bridge
+2026-01-16 17:04:53.221 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  prepareNavigationBarInfo() DecorView@ba446f2[MainActivity]
+2026-01-16 17:04:53.221 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  getNavigationBarColor() -16711423
+2026-01-16 17:04:53.221 25823-25823 InputMethodManager      com.aerosentinel.bridge              V  Starting input: tba=com.aerosentinel.bridge ic=null mNaviBarColor -16711423 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+2026-01-16 17:04:53.222 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  startInputInner - Id : 0
+2026-01-16 17:04:53.222 25823-25823 InputMethodManager      com.aerosentinel.bridge              I  startInputInner - mService.startInputOrWindowGainedFocus
+2026-01-16 17:04:53.232 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  ViewPostIme pointer 0
+2026-01-16 17:04:53.240 25823-27664 InputTransport          com.aerosentinel.bridge              D  Input channel constructed: 'ClientS', fd=81
+2026-01-16 17:04:53.246 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  MSG_WINDOW_FOCUS_CHANGED 1 1
+2026-01-16 17:04:53.248 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  prepareNavigationBarInfo() DecorView@ba446f2[MainActivity]
+2026-01-16 17:04:53.248 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  getNavigationBarColor() -16711423
+2026-01-16 17:04:53.248 25823-25823 InputMethodManager      com.aerosentinel.bridge              V  Starting input: tba=com.aerosentinel.bridge ic=null mNaviBarColor -16711423 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+2026-01-16 17:04:53.248 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  startInputInner - Id : 0
+2026-01-16 17:04:53.298 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject s[502266011744]
+2026-01-16 17:04:53.298 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject e[502266011744]
+2026-01-16 17:04:53.298 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject s[502266011648]
+2026-01-16 17:04:53.298 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject e[502266011648]
+2026-01-16 17:04:53.325 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  ViewPostIme pointer 1
+2026-01-16 17:04:53.344 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              V  updateAppliedLetterboxDirection, direction=1, Caller=android.view.ViewRootImpl.handleDispatchLetterboxDirectionChanged:12114
+2026-01-16 17:04:53.355 25823-25823 DecorView               com.aerosentinel.bridge              D  semSetRoundedCorners: 5
+2026-01-16 17:04:53.409  4588-4611  WindowManager           system_server                        E  win=Window{86468f7 u0 Splash Screen com.aerosentinel.bridge EXITING} destroySurfaces: appStopped=false win.mWindowRemovalAllowed=true win.mRemoveOnExit=true win.mViewVisibility=0 caller=com.android.server.wm.ActivityRecord.destroySurfaces:5251 com.android.server.wm.ActivityRecord.destroySurfaces:5232 com.android.server.wm.WindowState.onExitAnimationDone:5654 com.android.server.wm.WindowStateAnimator.onAnimationFinished:332 com.android.server.wm.WindowState.onAnimationFinished:6119 com.android.server.wm.-$$Lambda$dwJG8BAnLlvKNGuDY9U3-haNY4M.onAnimationFinished:2 com.android.server.wm.SurfaceAnimator.lambda$getFinishedCallback$0$SurfaceAnimator:112 
+2026-01-16 17:04:53.702 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_STARFIELD_SERVICES_ROOT_CERTIFICATE_AUTHORITY_G2_INTERMEDIATE) return_code(7)
+2026-01-16 17:04:53.739 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_DIGICERT_HIGH_ASSURANCE_EV_ROOT_CA) return_code(7)
+2026-01-16 17:04:53.745 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_STARFIELD_SERVICES_ROOT_CERTIFICATE_AUTHORITY) return_code(7)
+2026-01-16 17:04:53.752 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_GO_DADDY_SECURE_CERTIFICATE_AUTHORITY_G2) return_code(7)
+2026-01-16 17:04:53.757 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_COMODO_RSA_CERTIFICATION_AUTHORITY) return_code(7)
+2026-01-16 17:04:53.767 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_SFSROOTCAG2) return_code(7)
+2026-01-16 17:04:53.774 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_AMAZON_ROOT_CA4) return_code(7)
+2026-01-16 17:04:53.779 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_AMAZON_ROOT_CA1) return_code(7)
+2026-01-16 17:04:53.800 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_GO_DADDY_ROOT_CERTIFICATE_AUTHORITY_G2) return_code(7)
+2026-01-16 17:04:53.816 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_AMAZON_ROOT_CA2) return_code(7)
+2026-01-16 17:04:53.823 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_AMAZON_ROOT_CA3) return_code(7)
+2026-01-16 17:04:53.830 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_EQUIFAX_SECURE_CERTIFICATE_AUTHORITY) return_code(7)
+2026-01-16 17:04:53.904 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_BALTIMORE_CYBER_TRUST_ROOT) return_code(7)
+2026-01-16 17:04:53.924 25823-27834 KeyStore                com.aerosentinel.bridge              W  get(USRCERT_GLOBAL_SIGN_ROOT_CA) return_code(7)
+2026-01-16 17:04:53.993 25823-27834 DJIV5/DJIN...mp@2b06cd3 com.aerosentinel.bridge              I  (<init>:14) DJINetworkImp init 
+2026-01-16 17:04:53.996 25823-27834 TetheringManager        com.aerosentinel.bridge              I  registerTetheringEventCallback:com.aerosentinel.bridge
+2026-01-16 17:04:53.996 25823-27834 ConnectivityManager     com.aerosentinel.bridge              D  ConnectivityManager() mContext=com.aerosentinel.bridge.BridgeApplication@10b032f getOpPackageName()=com.aerosentinel.bridge getBasePackageName()=com.aerosentinel.bridge getPackageName()=com.aerosentinel.bridge
+2026-01-16 17:04:54.472 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  ViewPostIme pointer 0
+2026-01-16 17:04:54.556 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  ViewPostIme pointer 1
+2026-01-16 17:04:54.609 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  prepareNavigationBarInfo() DecorView@ba446f2[MainActivity]
+2026-01-16 17:04:54.610 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  getNavigationBarColor() -16711423
+2026-01-16 17:04:54.610 25823-25823 InputMethodManager      com.aerosentinel.bridge              V  Starting input: tba=com.aerosentinel.bridge ic=androidx.emoji2.viewsintegration.EmojiInputConnection@8492485 mNaviBarColor -16711423 mIsGetNaviBarColorSuccess true , NavVisible : true , NavTrans : false
+2026-01-16 17:04:54.610 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  startInputInner - Id : 0
+2026-01-16 17:04:54.630 25823-25823 InputMethodManager      com.aerosentinel.bridge              I  startInputInner - mService.startInputOrWindowGainedFocus
+2026-01-16 17:04:54.634 25823-25823 InputTransport          com.aerosentinel.bridge              D  Input channel constructed: 'ClientS', fd=94
+2026-01-16 17:04:54.634 25823-25823 InputTransport          com.aerosentinel.bridge              D  Input channel destroyed: 'ClientS', fd=81
+2026-01-16 17:04:54.635 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  SSI - flag : 0 Pid : 25823 view : com.aerosentinel.bridge
+2026-01-16 17:04:54.635 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  prepareNavigationBarInfo() DecorView@ba446f2[MainActivity]
+2026-01-16 17:04:54.635 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  getNavigationBarColor() -16711423
+2026-01-16 17:04:54.718 25823-25823 InputTransport          com.aerosentinel.bridge              D  Input channel constructed: 'd7277b ', fd=96
+2026-01-16 17:04:54.720 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  setView = android.widget.PopupWindow$PopupDecorView@b7538f5 TM=true
+2026-01-16 17:04:54.729 25823-25823 InputTransport          com.aerosentinel.bridge              D  Input channel constructed: '826c057', fd=97
+2026-01-16 17:04:54.731 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  setView = android.widget.PopupWindow$PopupDecorView@9b31156 TM=true
+2026-01-16 17:04:54.765 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  assignNativeObject: nativeObject = 0 Surface(name=null)/@0xa5891ad / android.view.SurfaceControl.readFromParcel:1121 android.view.IWindowSession$Stub$Proxy.relayout:1824 android.view.ViewRootImpl.relayoutWindow:9005 android.view.ViewRootImpl.performTraversals:3360 android.view.ViewRootImpl.doTraversal:2618 android.view.ViewRootImpl$TraversalRunnable.run:9971 android.view.Choreographer$CallbackRecord.run:1010 android.view.Choreographer.doCallbacks:809 android.view.Choreographer.doFrame:744 android.view.Choreographer$FrameDisplayEventReceiver.run:995 
+2026-01-16 17:04:54.766 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  Relayout returned: old=(0,63,2340,1080) new=(957,671,1037,766) req=(80,95)0 dur=15 res=0x7 s={true 502140039168} ch=true fn=-1
+2026-01-16 17:04:54.771 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  [DP] dp(1) 0 android.view.ViewRootImpl.reportNextDraw:10957 android.view.ViewRootImpl.performTraversals:3845 android.view.ViewRootImpl.doTraversal:2618 
+2026-01-16 17:04:54.771 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  [DP] pd() Asnyc report
+2026-01-16 17:04:54.814 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  assignNativeObject: nativeObject = 0 Surface(name=null)/@0xa8af52e / android.view.SurfaceControl.readFromParcel:1121 android.view.IWindowSession$Stub$Proxy.relayout:1824 android.view.ViewRootImpl.relayoutWindow:9005 android.view.ViewRootImpl.performTraversals:3360 android.view.ViewRootImpl.doTraversal:2618 android.view.ViewRootImpl$TraversalRunnable.run:9971 android.view.Choreographer$CallbackRecord.run:1010 android.view.Choreographer.doCallbacks:809 android.view.Choreographer.doFrame:744 android.view.Choreographer$FrameDisplayEventReceiver.run:995 
+2026-01-16 17:04:54.815 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  Relayout returned: old=(0,63,2340,1080) new=(957,590,1037,671) req=(80,81)0 dur=12 res=0x7 s={true 502140080128} ch=true fn=-1
+2026-01-16 17:04:54.821 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  [DP] dp(1) 0 android.view.ViewRootImpl.reportNextDraw:10957 android.view.ViewRootImpl.performTraversals:3845 android.view.ViewRootImpl.doTraversal:2618 
+2026-01-16 17:04:54.821 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  [DP] pd() Asnyc report
+2026-01-16 17:04:54.837 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  [DP] pdf(0) 0 android.view.ViewRootImpl.lambda$performDraw$1$ViewRootImpl:4668 android.view.-$$Lambda$ViewRootImpl$DJd0VUYJgsebcnSohO6h8zc_ONI.run:6 android.os.Handler.handleCallback:938 
+2026-01-16 17:04:54.837 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  [DP] rdf()
+2026-01-16 17:04:54.839 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  [DP] pdf(0) 0 android.view.ViewRootImpl.lambda$performDraw$1$ViewRootImpl:4668 android.view.-$$Lambda$ViewRootImpl$DJd0VUYJgsebcnSohO6h8zc_ONI.run:6 android.os.Handler.handleCallback:938 
+2026-01-16 17:04:54.839 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  [DP] rdf()
+2026-01-16 17:04:54.847 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              V  updateAppliedLetterboxDirection, direction=1, Caller=android.view.ViewRootImpl.handleDispatchLetterboxDirectionChanged:12114
+2026-01-16 17:04:54.848 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              V  updateAppliedLetterboxDirection, direction=1, Caller=android.view.ViewRootImpl.handleDispatchLetterboxDirectionChanged:12114
+2026-01-16 17:04:54.860 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  MSG_RESIZED_REPORT: frame=(957,671,1037,766) ci=(0,0,0,0) vi=(0,0,0,0) or=2
+2026-01-16 17:04:54.860 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  [DP] dp(1) 0 android.view.ViewRootImpl.reportNextDraw:10957 android.view.ViewRootImpl.access$1200:256 android.view.ViewRootImpl$ViewRootHandler.handleMessage:6101 
+2026-01-16 17:04:54.862 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  MSG_RESIZED_REPORT: frame=(957,590,1037,671) ci=(0,0,0,0) vi=(0,0,0,0) or=2
+2026-01-16 17:04:54.863 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  [DP] dp(1) 0 android.view.ViewRootImpl.reportNextDraw:10957 android.view.ViewRootImpl.access$1200:256 android.view.ViewRootImpl$ViewRootHandler.handleMessage:6101 
+2026-01-16 17:04:54.876 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject s[502138769824]
+2026-01-16 17:04:54.876 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject e[502138769824]
+2026-01-16 17:04:54.877 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  assignNativeObject: nativeObject = 0 Surface(name=null)/@0xa5891ad / android.view.SurfaceControl.readFromParcel:1121 android.view.IWindowSession$Stub$Proxy.relayout:1824 android.view.ViewRootImpl.relayoutWindow:9005 android.view.ViewRootImpl.performTraversals:3360 android.view.ViewRootImpl.doTraversal:2618 android.view.ViewRootImpl$TraversalRunnable.run:9971 android.view.Choreographer$CallbackRecord.run:1010 android.view.Choreographer.doCallbacks:809 android.view.Choreographer.doFrame:744 android.view.Choreographer$FrameDisplayEventReceiver.run:995 
+2026-01-16 17:04:54.879 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  Relayout returned: old=(957,671,1037,766) new=(957,671,1037,766) req=(80,95)0 dur=12 res=0x1 s={true 502140039168} ch=false fn=3
+2026-01-16 17:04:54.879 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  [DP] pd() Asnyc report
+2026-01-16 17:04:54.884 25823-27743 libEGL                  com.aerosentinel.bridge              W  EGLNativeWindowType 0x74e9e0f010 disconnect failed
+2026-01-16 17:04:54.904 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject s[502138770976]
+2026-01-16 17:04:54.904 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject e[502138770976]
+2026-01-16 17:04:54.905 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  assignNativeObject: nativeObject = 0 Surface(name=null)/@0xa8af52e / android.view.SurfaceControl.readFromParcel:1121 android.view.IWindowSession$Stub$Proxy.relayout:1824 android.view.ViewRootImpl.relayoutWindow:9005 android.view.ViewRootImpl.performTraversals:3360 android.view.ViewRootImpl.doTraversal:2618 android.view.ViewRootImpl$TraversalRunnable.run:9971 android.view.Choreographer$CallbackRecord.run:1010 android.view.Choreographer.doCallbacks:809 android.view.Choreographer.doFrame:744 android.view.Choreographer$FrameDisplayEventReceiver.run:995 
+2026-01-16 17:04:54.907 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  Relayout returned: old=(957,590,1037,671) new=(957,590,1037,671) req=(80,81)0 dur=12 res=0x1 s={true 502140080128} ch=false fn=2
+2026-01-16 17:04:54.907 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  [DP] pd() Asnyc report
+2026-01-16 17:04:54.909 25823-27743 libEGL                  com.aerosentinel.bridge              W  EGLNativeWindowType 0x74e9e19010 disconnect failed
+2026-01-16 17:04:54.921 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  [DP] pdf(0) 0 android.view.ViewRootImpl.lambda$performDraw$1$ViewRootImpl:4668 android.view.-$$Lambda$ViewRootImpl$DJd0VUYJgsebcnSohO6h8zc_ONI.run:6 android.os.Handler.handleCallback:938 
+2026-01-16 17:04:54.921 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  [DP] rdf()
+2026-01-16 17:04:54.923 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  [DP] pdf(0) 0 android.view.ViewRootImpl.lambda$performDraw$1$ViewRootImpl:4668 android.view.-$$Lambda$ViewRootImpl$DJd0VUYJgsebcnSohO6h8zc_ONI.run:6 android.os.Handler.handleCallback:938 
+2026-01-16 17:04:54.923 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  [DP] rdf()
+2026-01-16 17:04:54.965 25823-27743 libEGL                  com.aerosentinel.bridge              W  EGLNativeWindowType 0x74e9e0f010 disconnect failed
+2026-01-16 17:04:54.965 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              D  dispatchDetachedFromWindow: reset blurmask
+2026-01-16 17:04:54.965 25823-25823 ViewRootIm...w:504b239] com.aerosentinel.bridge              I  dispatchDetachedFromWindow
+2026-01-16 17:04:54.966 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject s[502138773280]
+2026-01-16 17:04:54.966 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject e[502138773280]
+2026-01-16 17:04:54.980 25823-25823 InputTransport          com.aerosentinel.bridge              D  Input channel destroyed: 'd7277b ', fd=96
+2026-01-16 17:04:54.983 25823-27743 libEGL                  com.aerosentinel.bridge              W  EGLNativeWindowType 0x74e9e19010 disconnect failed
+2026-01-16 17:04:54.983 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              D  dispatchDetachedFromWindow: reset blurmask
+2026-01-16 17:04:54.983 25823-25823 ViewRootIm...w:ac2168a] com.aerosentinel.bridge              I  dispatchDetachedFromWindow
+2026-01-16 17:04:54.984 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject s[502138769824]
+2026-01-16 17:04:54.984 25823-25823 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject e[502138769824]
+2026-01-16 17:04:54.992 25823-25823 InputTransport          com.aerosentinel.bridge              D  Input channel destroyed: '826c057', fd=97
+2026-01-16 17:04:55.156 25823-27834 GuidUtil                com.aerosentinel.bridge              E  (co_a:3) error:1e00007b:Cipher functions:OPENSSL_internal:WRONG_FINAL_BLOCK_LENGTH 
+2026-01-16 17:04:55.210 25823-27660 sentinel.bridg          com.aerosentinel.bridge              I  Background concurrent copying GC freed 31590(5191KB) AllocSpace objects, 7(140KB) LOS objects, 55% free, 4989KB/10MB, paused 552us total 126.852ms
+2026-01-16 17:04:55.754 25823-25823 InsetsSourceConsumer    com.aerosentinel.bridge              D  setRequestedVisible: visible=true, type=13, host=com.aerosentinel.bridge/com.aerosentinel.bridge.MainActivity, from=android.view.InsetsSourceConsumer.show:229 android.view.InsetsController.showDirectly:1437 android.view.InsetsController.controlAnimationUnchecked:1110 android.view.InsetsController.applyAnimation:1417 android.view.InsetsController.show:962 android.view.ViewRootImpl$ViewRootHandler.handleMessage:6146 android.os.Handler.dispatchMessage:106 android.os.Looper.loop:246 android.app.ActivityThread.main:8653 java.lang.reflect.Method.invoke:-2 
+2026-01-16 17:04:55.997 25823-28038 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject s[502138769824]
+2026-01-16 17:04:55.998 25823-28038 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject e[502138769824]
+2026-01-16 17:04:56.970 25823-27834 DJIV5/SDKConfig         com.aerosentinel.bridge              E  (getPackageProductCategory:10) dji.v5.handheld.BuildConfig 
+2026-01-16 17:04:57.097 25823-27834 DJI                     com.aerosentinel.bridge              I  SDK init progress=100
+2026-01-16 17:05:38.291 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  ViewPostIme key 0
+2026-01-16 17:05:38.293 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  ViewPostIme key 1
+2026-01-16 17:05:38.296 25823-25823 InputMethodManager      com.aerosentinel.bridge              D  HSIFW - flag : 0
+2026-01-16 17:05:38.313 25823-25823 InsetsSourceConsumer    com.aerosentinel.bridge              D  setRequestedVisible: visible=false, type=13, host=com.aerosentinel.bridge/com.aerosentinel.bridge.MainActivity, from=android.view.InsetsSourceConsumer.hide:236 android.view.ImeInsetsSourceConsumer.hide:101 android.view.InsetsController.hideDirectly:1430 android.view.InsetsController.controlAnimationUnchecked:1112 android.view.InsetsController.applyAnimation:1417 android.view.InsetsController.hide:984 android.view.ViewRootImpl$ViewRootHandler.handleMessage:6150 android.os.Handler.dispatchMessage:106 android.os.Looper.loop:246 android.app.ActivityThread.main:8653 
+2026-01-16 17:05:38.543 25823-28038 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject s[502138773280]
+2026-01-16 17:05:38.544 25823-28038 SurfaceControl          com.aerosentinel.bridge              I  nativeRelease nativeObject e[502138773280]
+2026-01-16 17:05:39.427 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  ViewPostIme pointer 0
+2026-01-16 17:05:39.490 25823-25823 ViewRootIm...nActivity] com.aerosentinel.bridge              I  ViewPostIme pointer 1
