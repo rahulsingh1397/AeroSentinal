@@ -111,3 +111,6 @@ desktop.ini
 .parcel-cache/
 coverage/
 .nyc_output/
+
+# DJI SDK download (local only)
+Mobile-SDK-Android-V5-dev-sdk-main/

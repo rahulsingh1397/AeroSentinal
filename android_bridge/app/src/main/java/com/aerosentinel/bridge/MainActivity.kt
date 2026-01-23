@@ -18,14 +18,26 @@ import dji.v5.manager.interfaces.SDKManagerCallback
 import dji.sdk.keyvalue.key.FlightControllerKey
 import dji.sdk.keyvalue.key.BatteryKey
 import dji.sdk.keyvalue.key.GimbalKey
+import dji.sdk.keyvalue.key.KeyTools
 import dji.sdk.keyvalue.value.common.LocationCoordinate2D
 import dji.sdk.keyvalue.value.common.Attitude
+import dji.sdk.keyvalue.value.common.Velocity3D
 import dji.v5.manager.KeyManager
+import dji.v5.common.callback.CommonCallbacks
+import dji.sdk.keyvalue.key.DJIKey
+import okio.ByteString.Companion.toByteString
 import okhttp3.*
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import android.content.pm.PackageManager
+import android.Manifest
+import android.os.Build
+import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
+    private val REQUEST_PERMISSION_CODE = 12345
     private var webSocket: WebSocket? = null
     private val client = OkHttpClient.Builder()
         .readTimeout(0, TimeUnit.MILLISECONDS)
@@ -47,6 +59,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var obstacleDistanceText: TextView
     private lateinit var gimbalPitchText: TextView
     private lateinit var coordinatesText: TextView
+    private lateinit var videoStatusText: TextView
 
     private val telemetryData = JSONObject()
 
@@ -57,6 +70,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        checkAndRequestPermissions()
 
         statusText = findViewById(R.id.statusText)
         ipInput = findViewById(R.id.ipInput)
@@ -74,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         obstacleDistanceText = findViewById(R.id.obstacleDistanceText)
         gimbalPitchText = findViewById(R.id.gimbalPitchText)
         coordinatesText = findViewById(R.id.coordinatesText)
+        videoStatusText = findViewById(R.id.videoStatusText)
 
         connectBtn.setOnClickListener {
             val raw = ipInput.text.toString().trim()
@@ -84,6 +100,49 @@ class MainActivity : AppCompatActivity() {
         }
 
         initDJISDK()
+    }
+
+    private fun checkAndRequestPermissions() {
+        val permissions = ArrayList<String>()
+        permissions.add(Manifest.permission.READ_PHONE_STATE)
+        permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        permissions.add(Manifest.permission.ACCESS_FINE_LOCATION)
+        permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            permissions.add(Manifest.permission.BLUETOOTH_SCAN)
+            permissions.add(Manifest.permission.BLUETOOTH_CONNECT)
+        } else {
+            permissions.add(Manifest.permission.BLUETOOTH)
+            permissions.add(Manifest.permission.BLUETOOTH_ADMIN)
+        }
+
+        val missingPermissions = permissions.filter {
+            ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+        }
+
+        if (missingPermissions.isNotEmpty()) {
+            ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), REQUEST_PERMISSION_CODE)
+        } else {
+            initDJISDK()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                initDJISDK()
+            } else {
+                Toast.makeText(this, "Permissions required for DJI SDK", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        KeyManager.getInstance().cancelListen(this)
+        webSocket?.close(1000, "Activity destroyed")
     }
 
     private fun updateStatus(msg: String) {
@@ -236,6 +295,7 @@ class MainActivity : AppCompatActivity() {
                 updateStatus("DJI SDK Registered!")
                 Toast.makeText(this@MainActivity, "DJI SDK Registered", Toast.LENGTH_SHORT).show()
                 startTelemetryPolling()
+                updateVideoStatus("Video: SDK ready (camera streaming not yet implemented)")
             }
 
             override fun onRegisterFailure(error: IDJIError) {
@@ -270,83 +330,149 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startTelemetryPolling() {
-        updateStatus("Starting telemetry stream...")
-        Thread {
-            while (true) {
-                try {
-                    // Poll real DJI SDK telemetry data
-                    val keyManager = KeyManager.getInstance()
-                    
-                    // Attitude (pitch, roll, yaw)
-                    keyManager.getValue(FlightControllerKey.KeyAircraftAttitude)?.let { attitude ->
-                        if (attitude is Attitude) {
-                            updateTelemetry("pitch", attitude.pitch)
-                            updateTelemetry("roll", attitude.roll)
-                            updateTelemetry("yaw", attitude.yaw)
-                        }
-                    }
-                    
-                    // Altitude
-                    keyManager.getValue(FlightControllerKey.KeyAltitude)?.let { altitude ->
-                        updateTelemetry("altitude", altitude)
-                    }
-                    
-                    // Battery
-                    keyManager.getValue(BatteryKey.KeyChargeRemainingInPercent)?.let { battery ->
-                        updateTelemetry("battery", battery)
-                    }
-                    
-                    // Horizontal Speed
-                    keyManager.getValue(FlightControllerKey.KeyGroundSpeed)?.let { speedH ->
-                        updateTelemetry("speedH", speedH)
-                    }
-                    
-                    // Vertical Speed
-                    keyManager.getValue(FlightControllerKey.KeyVerticalSpeed)?.let { speedV ->
-                        updateTelemetry("speedV", speedV)
-                    }
-                    
-                    // Gimbal Pitch
-                    keyManager.getValue(GimbalKey.KeyGimbalAttitude)?.let { gimbalAttitude ->
-                        if (gimbalAttitude is Attitude) {
-                            updateTelemetry("gimbalPitch", gimbalAttitude.pitch)
-                        }
-                    }
-                    
-                    // GPS Coordinates
-                    keyManager.getValue(FlightControllerKey.KeyAircraftLocation)?.let { location ->
-                        if (location is LocationCoordinate2D) {
-                            val coords = JSONObject().apply {
-                                put("lat", location.latitude)
-                                put("lng", location.longitude)
-                            }
-                            synchronized(telemetryData) { telemetryData.put("coordinates", coords) }
-                        }
-                    }
-                    
-                    // Distance to Home
-                    keyManager.getValue(FlightControllerKey.KeyDistanceToHome)?.let { distance ->
-                        updateTelemetry("distanceHome", distance)
-                    }
-                    
-                    // Obstacle Distance (if available)
-                    keyManager.getValue(FlightControllerKey.KeyObstacleAvoidanceEnabled)?.let { enabled ->
-                        if (enabled == true) {
-                            // Note: Actual obstacle distance may require perception module
-                            updateTelemetry("obstacleDistance", 10.0) // Placeholder for now
-                        }
-                    }
-                    
-                    Thread.sleep(100)
-                } catch (e: Exception) {
-                    Log.e("Bridge", "Telemetry polling error: ${e.message}", e)
+        updateStatus("Starting telemetry listener...")
+        Log.i("Telemetry", "Setting up telemetry listeners...")
+        
+        val keyManager = KeyManager.getInstance()
+        
+        // Initialize default telemetry values so frontend shows something
+        initializeDefaultTelemetry()
+
+        // Helper to register listeners safely with logging
+        fun <T : Any> listen(key: DJIKey<T>, keyName: String, update: (T) -> Unit) {
+            Log.d("Telemetry", "Registering listener for: $keyName")
+            keyManager.listen(key, this) { _: T?, newValue: T? ->
+                if (newValue != null) {
+                    Log.d("Telemetry", "Received $keyName: $newValue")
+                    update(newValue)
+                } else {
+                    Log.w("Telemetry", "$keyName returned null")
                 }
             }
-        }.start()
+            
+            // Also try to get current value immediately
+            try {
+                val currentValue = keyManager.getValue(key)
+                if (currentValue != null) {
+                    Log.d("Telemetry", "Initial value for $keyName: $currentValue")
+                    update(currentValue)
+                }
+            } catch (e: Exception) {
+                Log.w("Telemetry", "Could not get initial value for $keyName: ${e.message}")
+            }
+        }
+
+        // Attitude (pitch, roll, yaw)
+        listen(KeyTools.createKey(FlightControllerKey.KeyAircraftAttitude), "Attitude") { attitude ->
+            updateTelemetry("pitch", attitude.pitch)
+            updateTelemetry("roll", attitude.roll)
+            updateTelemetry("yaw", attitude.yaw)
+        }
+
+        // Altitude
+        listen(KeyTools.createKey(FlightControllerKey.KeyAltitude), "Altitude") { altitude ->
+            updateTelemetry("altitude", altitude)
+        }
+
+        // Battery
+        listen(KeyTools.createKey(BatteryKey.KeyChargeRemainingInPercent), "Battery") { battery ->
+            updateTelemetry("battery", battery)
+        }
+
+        // Velocity (Horizontal & Vertical)
+        listen(KeyTools.createKey(FlightControllerKey.KeyAircraftVelocity), "Velocity") { velocity ->
+            val speedH = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y)
+            updateTelemetry("speedH", speedH)
+            updateTelemetry("speedV", Math.abs(velocity.z))
+        }
+
+        // Gimbal Pitch
+        listen(KeyTools.createKey(GimbalKey.KeyGimbalAttitude), "GimbalAttitude") { gimbalAttitude ->
+            updateTelemetry("gimbalPitch", gimbalAttitude.pitch)
+        }
+
+        // GPS Coordinates
+        val locationKey = KeyTools.createKey(FlightControllerKey.KeyAircraftLocation)
+        listen(locationKey, "Location") { location ->
+            val coords = JSONObject().apply {
+                put("lat", location.latitude)
+                put("lng", location.longitude)
+            }
+            synchronized(telemetryData) { telemetryData.put("coordinates", coords) }
+            
+            // Calculate Distance to Home if Home Location is known
+            val homeKey = KeyTools.createKey(FlightControllerKey.KeyHomeLocation)
+            val homeLocation = keyManager.getValue(homeKey)
+            if (homeLocation != null) {
+                 val distance = calculateDistance(homeLocation, location)
+                 updateTelemetry("distanceHome", distance)
+            }
+        }
+        
+        // Listen for Home Location updates as well
+        listen(KeyTools.createKey(FlightControllerKey.KeyHomeLocation), "HomeLocation") { homeLocation ->
+             val currentLocation = keyManager.getValue(locationKey)
+             if (currentLocation != null) {
+                 val distance = calculateDistance(homeLocation, currentLocation)
+                 updateTelemetry("distanceHome", distance)
+             }
+        }
+
+        // Obstacle Distance (placeholder - DJI Mini 3 doesn't have obstacle sensors in all directions)
+        updateTelemetry("obstacleDistance", 10.0)
+        
+        Log.i("Telemetry", "Telemetry listeners registered")
+    }
+    
+    private fun initializeDefaultTelemetry() {
+        // Set default values so frontend shows something even before drone data arrives
+        synchronized(telemetryData) {
+            telemetryData.put("pitch", 0.0)
+            telemetryData.put("roll", 0.0)
+            telemetryData.put("yaw", 0.0)
+            telemetryData.put("altitude", 0.0)
+            telemetryData.put("battery", 0)
+            telemetryData.put("speedH", 0.0)
+            telemetryData.put("speedV", 0.0)
+            telemetryData.put("gimbalPitch", 0.0)
+            telemetryData.put("satellites", 0)
+            telemetryData.put("flightTime", 0)
+            telemetryData.put("coordinates", JSONObject().apply {
+                put("lat", 0.0)
+                put("lng", 0.0)
+            })
+        }
+    }
+    
+    private fun updateVideoStatus(status: String) {
+        runOnUiThread {
+            videoStatusText.text = status
+        }
+    }
+
+    private fun calculateDistance(loc1: LocationCoordinate2D, loc2: LocationCoordinate2D): Double {
+        val earthRadius = 6371000.0 // meters
+        val lat1Rad = Math.toRadians(loc1.latitude)
+        val lat2Rad = Math.toRadians(loc2.latitude)
+        val deltaLat = Math.toRadians(loc2.latitude - loc1.latitude)
+        val deltaLng = Math.toRadians(loc2.longitude - loc1.longitude)
+        
+        val a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+                Math.cos(lat1Rad) * Math.cos(lat2Rad) *
+                Math.sin(deltaLng / 2) * Math.sin(deltaLng / 2)
+        val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+        
+        return earthRadius * c
     }
 
     private fun updateTelemetry(key: String, value: Any) {
-        synchronized(telemetryData) { telemetryData.put(key, value) }
+        synchronized(telemetryData) { 
+            telemetryData.put(key, value)
+            // Trigger UI update immediately on main thread
+            runOnUiThread {
+                 updateTelemetryUI(telemetryData)
+            }
+        }
     }
 
     private fun startTelemetryStream() {
@@ -354,12 +480,15 @@ class MainActivity : AppCompatActivity() {
             while (webSocket != null) {
                 try {
                     val payload = JSONObject()
+                    val jsonString: String
                     synchronized(telemetryData) {
                         if (!telemetryData.has("obstacleDistance")) telemetryData.put("obstacleDistance", 10.0)
                         if (!telemetryData.has("distanceHome")) telemetryData.put("distanceHome", 0.0)
                         payload.put("telemetry", telemetryData)
+                        // Serialize inside lock to ensure thread safety
+                        jsonString = payload.toString()
                     }
-                    webSocket?.send(payload.toString())
+                    webSocket?.send(jsonString)
                     Thread.sleep(100)
                 } catch (e: Exception) {
                     Log.e("Bridge", "Telemetry Error", e)

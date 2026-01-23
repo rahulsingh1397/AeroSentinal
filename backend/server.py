@@ -6,10 +6,20 @@ import time
 from typing import List, Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 from ultralytics import YOLO
 import uvicorn
 
 app = FastAPI()
+
+# Add CORS middleware for video feed access from frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Global State
 frontend_clients: List[WebSocket] = []
@@ -31,13 +41,27 @@ async def frontend_endpoint(websocket: WebSocket):
     print(f"Frontend connected. Total: {len(frontend_clients)}")
     try:
         while True:
-            data = await websocket.receive_text()
-            if drone_client:
-                await drone_client.send_text(data)
+            # Use wait_for with timeout to prevent blocking indefinitely
+            # This allows the connection to stay alive while waiting for commands
+            try:
+                data = await asyncio.wait_for(websocket.receive_text(), timeout=30.0)
+                print(f"Received from frontend: {data}")
+                if drone_client:
+                    await drone_client.send_text(data)
+            except asyncio.TimeoutError:
+                # Send a ping to keep connection alive
+                try:
+                    await websocket.send_text('{"type":"ping"}')
+                except:
+                    break
     except WebSocketDisconnect:
+        pass
+    except Exception as e:
+        print(f"Frontend error: {e}")
+    finally:
         if websocket in frontend_clients:
             frontend_clients.remove(websocket)
-        print("Frontend disconnected")
+        print(f"Frontend disconnected. Total: {len(frontend_clients)}")
 
 @app.websocket("/ws/drone")
 async def drone_endpoint(websocket: WebSocket):

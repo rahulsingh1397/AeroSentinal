@@ -34,6 +34,10 @@ export class LiveDroneService implements IDroneService {
             this.socket.onmessage = (event) => {
                 try {
                     const payload = JSON.parse(event.data);
+                    // Ignore ping messages from backend (keep-alive)
+                    if (payload.type === 'ping') {
+                        return;
+                    }
                     // Expecting payload: { telemetry: {}, objects: [], logs: [] }
                     this.notify(payload);
                 } catch (e) {
